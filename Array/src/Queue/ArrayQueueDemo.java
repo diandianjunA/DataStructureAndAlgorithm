@@ -2,6 +2,9 @@ package Queue;
 
 import java.util.Scanner;
 
+/**
+ * 数组实现队列
+ */
 public class ArrayQueueDemo {
     public static void main(String[] args) {
         ArrayQueue arrayQueue = new ArrayQueue(3);

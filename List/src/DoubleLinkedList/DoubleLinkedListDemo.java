@@ -4,6 +4,9 @@ import org.testng.annotations.Test;
 
 import java.lang.reflect.Field;
 
+/**
+ * 双向链表
+ */
 public class DoubleLinkedListDemo {
     //创建节点
     Hero hero1 = new Hero(1, "宋江", "及时雨");
@@ -19,6 +22,7 @@ public class DoubleLinkedListDemo {
         doubleLinkedList.add(hero4);
     }
 
+    //改用单元测试的方法来测试链表的功能
     @Test
     public void DoubleLinkedShowTest(){
         System.out.println("双向链表的测试");

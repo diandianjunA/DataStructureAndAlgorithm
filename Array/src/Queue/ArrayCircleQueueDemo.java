@@ -2,6 +2,9 @@ package Queue;
 
 import java.util.Scanner;
 
+/**
+ * 数组实现环形队列
+ */
 public class ArrayCircleQueueDemo {
     public static void main(String[] args) {
         ArrayCircleQueue arrayCircleQueue = new ArrayCircleQueue(4);
