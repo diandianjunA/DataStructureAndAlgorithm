@@ -12,6 +12,6 @@ public class JosephuQuestion {
     @Test
     public void JosephuQuestion(){
         CircleLinkedList circleLinkedList = new CircleLinkedList();
-        circleLinkedList.counting(1,2,5);
+        circleLinkedList.counting(10,20,125);
     }
 }
