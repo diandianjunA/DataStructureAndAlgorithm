@@ -89,10 +89,70 @@ public class PolandNotation {
         }while(i<s.length());
         return strings;
     }
+    public static List<String> getSuffixExpression(List<String> list){
+        //定义两个栈
+        Stack<String> operationStack = new Stack<>();
+        //因为第二个栈在整个过程中没有pop操作，最后还还要逆序输出，因此直接用一个集合来装就好
+        ArrayList<String> temp = new ArrayList<>();
+        for (String s:list) {
+            //如果是数字，就入temp栈
+            if(s.matches("\\d+")){
+                temp.add(s);
+            }else if(s.equals("(")){//如果是左括号，入operation栈
+                operationStack.push(s);
+            }else if(s.equals(")")){
+                while (!operationStack.peek().equals("(")){
+                    String pop = operationStack.pop();
+                    temp.add(pop);
+                }
+                operationStack.pop();//消掉了一对括号
+            }else{
+                while(operationStack.size()!=0&&Operation.getValue(operationStack.peek())>=Operation.getValue(s)){
+                    temp.add(operationStack.pop());
+                }
+                operationStack.push(s);
+            }
+        }
+        while(!operationStack.isEmpty()){
+            temp.add(operationStack.pop());
+        }
+        return temp;
+    }
     @Test
     public void ExpressionTransformTest(){
         String expression="1+((2+3)*4)-5";
         List<String> expressionList = getExpressionList(expression);
-        System.out.println(expressionList);
+        List<String> suffixExpression = getSuffixExpression(expressionList);
+        int calculate = calculate(suffixExpression);
+        System.out.println(calculate);
+    }
+}
+class Operation{
+    private final static int ADD=1;
+    private final static int SUB=1;
+    private final static int MUL=2;
+    private final static int DIV=2;
+
+    public static int getValue(String operation){
+        int result=0;
+        switch (operation){
+            case "+":
+                result=ADD;
+                break;
+            case "-":
+                result=SUB;
+                break;
+            case "*":
+                result=MUL;
+                break;
+            case "/":
+                result=DIV;
+                break;
+            case "(":
+                break;
+            default:
+                System.out.println("运算符输入有误");
+        }
+        return result;
     }
 }
